@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salary Split - IT Computer Studies</title>
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: #f5f6fa;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+  }
+  .container {
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  h2 {
+    text-align: center;
+    color: #0066cc;
+  }
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  button {
+    width: 100%;
+    background: #0066cc;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  button:hover {
+    background: #0055a3;
+  }
+  .result {
+    margin-top: 20px;
+  }
+  .item {
+    background: #f0f8ff;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  .item strong {
+    display: inline-block;
+    width: 60%;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>💰 Salary Split Calculator</h2>
+  <p>Enter your monthly income:</p>
+  <input type="number" id="income" placeholder="e.g. 7000">
+  <button onclick="calculateSplit()">Calculate</button>
+  
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+function calculateSplit() {
+  const income = document.getElementById("income").value;
+  if (!income || income <= 0) {
+    document.getElementById("result").innerHTML = "<p>Please enter a valid income amount.</p>";
+    return;
+  }
+
+  const data = [
+    { name: "Essentials (Food, Travel, etc.)", percent: 50 },
+    { name: "Savings / Emergency Fund", percent: 10 },
+    { name: "Skill Growth / Education", percent: 15 },
+    { name: "Investment / Future Goal", percent: 10 },
+    { name: "Family / Charity / Help", percent: 5 },
+    { name: "Enjoyment / Self-Care", percent: 10 }
+  ];
+
+  let html = "<h3>💡 Recommended Split:</h3>";
+  data.forEach(item => {
+    const amount = (income * item.percent) / 100;
+    html += `
+      <div class="item">
+        <strong>${item.name}</strong> 
+        <span>${item.percent}% = ₹${amount.toFixed(0)}</span>
+      </div>`;
+  });
+
+  document.getElementById("result").innerHTML = html;
+}
+</script>
+
+</body>
+</html>
